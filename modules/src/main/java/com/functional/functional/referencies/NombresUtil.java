@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 public class NombresUtil {
     public static void main(String[] args) {
         List<String> profesores = getList("Nicolas", "Jorge", "Zaira");
-        // la estrcutura de forEach dice que requiere un Consumer<>
+        // la estructura de forEach dice que requiere un Consumer<>
         // que reciba cada uno de los elementos de la lista
         Consumer<String> printer = text -> System.out.println(text);
         profesores.forEach(printer);// la lista se iterara internamente con cada uno de los elementos
