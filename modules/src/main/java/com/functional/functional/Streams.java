@@ -48,11 +48,38 @@ public class Streams {
         // te dara un error asi, por que los Streams solo pueden ser consumidos una vez
         // quiero consumir emphasisStream despues de courseStream
         // courseStream se consume en esta linea *1 y se inutiliza
-        //cuando intento hacer el filtrado no puedo por que ya se consumir *2
+        //cuando intento hacer el filtrado no puedo por que ya se ha consumido *2
 
         //forma correcta de un solo dato por pantalla
         Stream<String> justJavaCourses = emphasisCourses.filter(course -> course.contains("java"));
         justJavaCourses.forEach(System.out::println);
 
+        //de mejor manera con Chaining(encadenado)
+        Stream<String> courseStream2 = courseList.stream();
+        //hacemos lo mismo slo que ahora añadimos "!!"
+        addOperator(courseStream2.map(course -> course + "!!")//*3
+                .filter(course -> course.contains("java")))//(operacion media)
+                .forEach(System.out::println);//por cada uno de ellos ahoremos impresion(operacion final)
+        //esto es igual que almacenar en variables, pero mas fluido
+        // no hay que almacenar el resultado en cada interaccion
+        // los Sreams tiene dos tipos de operaciones, Intermedia y Finales
+        //intermedia genera un nuevo Stream del tipo de la operacion
+        //final genera un dato final despues de operar todos( no devuelve un Stream)
+        //por que mejor Stream que listas? por que devuelve Optionals<>
+        //un codigo que se ejecute solo cuando datos esten presentes
+
+    }
+    //muchas funciones son de las que devuelven un nuevo stream
+    // y que lo que hacen internamente es agregar operadores
+    // a un stream que recibiran como parametro
+    // (coge un Stream agrega funciones y devuelve un Stream que ya tiene esas funciones)
+    // ya no hay ausencia o presencia de datos, stream se encarga de la iteraccion
+    // y Optional nos ayuda ha hacer operaciones cuando no existen algunos datos
+    static <T> Stream<T> addOperator(Stream<T> stream){
+        //retornameros el stream con .peek , toma un Consumer<> pero no modifica los datos
+        // es similar a .map pero recibe un dato y devuelve el mismo dato (es mas como un visor del Stream)
+        return stream.peek(data -> System.out.println("Dato: " + data));
+        //mandamos el Stream resultante del filtro a nuestra nueva funcion *3
+        //hace relativamente lo mismo pero podemos usar funciones que reciban Streams y generen Streams
     }
 }
