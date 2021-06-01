@@ -8,7 +8,7 @@ public class TypeStream {
         // infiniteStream= genera datos infinitos
         // quiero limitar el numero de datos recogidos
         IntStream infiniteStream = IntStream.iterate(0,x -> x + 1);
-        //empezamos en 0, generamos el 1, y loeg el 2, el 3...
+        //empezamos en 0, generamos el 1, y luego el 2, el 3...
         infiniteStream.limit(1000)//lo limitamos a los primeros 1000 numeros
                 .parallel()//*1
                 .filter(x -> x % 2 == 0)// lo filtrams a los numeros pares
