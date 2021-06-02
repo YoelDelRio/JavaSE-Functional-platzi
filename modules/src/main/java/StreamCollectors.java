@@ -27,7 +27,7 @@ public class StreamCollectors {
         //toList (a lista)
         //toMap= donde tenemos una llave y un valor partiendo de los datos y necesita una funcion
         //con la cual generara una llave para cierto dato
-        //toSet= estructura de elemenos unicos
+        //toSet= estructura de elementos unicos
 
 
 
